@@ -2,12 +2,12 @@ import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useState} from "react
 import style from "../style-modules/Todolist.module.css";
 import {Button, TextField} from "@material-ui/core";
 
-type AddItemFormType = {
+type AddItemFormPropsType = {
     style?: any
     id?: string
     addItem: (id: string, titleTask: string) => void
 }
-export const AddItemForm: FC<AddItemFormType> = React.memo(({
+export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
                                                                 id,
                                                                 addItem
                                                             }) => {
