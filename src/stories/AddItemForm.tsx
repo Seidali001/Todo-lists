@@ -1,4 +1,4 @@
-import {FilterTodolistType} from "../AppWithRedux";
+import {FilterTodolistType} from "../components/AppWithRedux";
 import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useCallback, useState} from "react";
 import style from "../style-modules/Todolist.module.css";
 import {Button, TextField} from "@material-ui/core";

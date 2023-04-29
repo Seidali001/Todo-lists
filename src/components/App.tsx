@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect} from 'react'
-import './App.css';
-import {Todolist} from './components/Todolist';
-import {AddItemForm} from './components/AddItemForm';
+import React, {useCallback} from 'react'
+import '../App.css';
+import {Todolist} from './Todolist';
+import {AddItemForm} from './AddItemForm';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -14,29 +14,30 @@ import {Menu} from '@mui/icons-material';
 import {
     addNewTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, fetchTodolistsTC,
+    changeTodolistTitleAC,
     removeTodolistAC,
     TodolistDomainType
-} from './state/todolsits-reducer'
+} from '../state/todolsits-reducer'
 import {
     addTaskAC,
     changeTaskTitleAC,
     removeTaskAC,
     changeTaskStatusAC
-} from './state/tasks-reducer';
+} from '../state/tasks-reducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType, TDispatch} from './state/store';
-import {TaskPriorities, TaskStatuses, TasksType} from './api/todolist-api'
+import {AppRootStateType} from '../state/store';
+import {TaskPriorities, TaskStatuses, TasksType} from '../api/todolist-api'
 import {FilterTodolistType} from "./AppWithRedux";
 import {v1} from "uuid";
-
 
 export type TasksStateType = {
     [key: string]: Array<TasksType>
 }
 
-
 function App() {
+
+    // если мы хотим получить Тудулисты с сервера:
+
     /*const universalDispatch: TDispatch = useDispatch();
     useEffect(() => {
         universalDispatch(fetchTodolistsTC())

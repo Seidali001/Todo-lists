@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-import {tasksApi} from "../api/tasks-api";
-import {TaskStatuses, UpdateTaskModelType} from "../api/todolist-api";
+import {tasksApi} from "../../api/tasks-api";
+import {TaskStatuses, UpdateTaskModelType} from "../../api/todolist-api";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../state/store";
-import {TasksStateType} from "../App";
-import {updateTaskAC} from "../state/tasks-reducer";
+import {AppRootStateType} from "../../state/store";
+import {TasksStateType} from "../../components/App";
+import {updateTaskAC} from "../../state/tasks-reducer";
 import {string} from "prop-types";
 
 export default {

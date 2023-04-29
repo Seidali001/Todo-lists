@@ -1,8 +1,22 @@
+/*html {
+    background-image: url(desert.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/
+
+/*body {
+    background-color: #2f4e8a;
+
+}*/
+
 .App {
-  padding: 30px;
-  display: flex;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
 }
 
-.App > div {
-  margin-right: 50px;
-}

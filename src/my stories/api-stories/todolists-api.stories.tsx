@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios";
-import {todolistApi} from "../api/todolist-api";
+import {todolistApi} from "../../api/todolist-api";
 import {string} from "prop-types";
 
 export default {

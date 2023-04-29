@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {Task} from "../components/Task";
+import {Task} from "../../components/Task";
 import {Checkbox} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
-import {TaskStatuses, TasksType} from "../api/todolist-api";
-import {tasksApi} from "../api/tasks-api";
+import {TaskStatuses, TasksType} from "../../api/todolist-api";
+import {tasksApi} from "../../api/tasks-api";
 
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

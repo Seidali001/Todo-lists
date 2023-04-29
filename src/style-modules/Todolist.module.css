@@ -1,0 +1,108 @@
+.Todolist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+    opacity: .9;
+    background-color: rgba(189, 245, 250, 0.66);
+    width: 250px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 2px 10px 0 #074b83;
+    box-shadow: 0 2px 10px 0 #074b83;
+    font-family: 'Dancing Script', cursive;
+    height: max-content;
+}
+
+.h3 {
+    color: black;
+    font-family: 'Alkatra';
+    font-size: 30px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.AddTodo {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: 28px;
+    width: 180px;
+    border-radius: 5px;
+    background-color: #32a4d79e;
+    color: white;
+}
+
+.AddTodoOpacity {
+    opacity: .1;
+}
+
+.TodolistTitleError {
+    font-size: 15px;
+    color: #b50202;
+    font-family: IBM Plex Serif;
+}
+
+.inputBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    justify-content: flex-start;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input {
+    height: 20px;
+}
+
+.inputWidth {
+    width: 55%;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.ul {
+    color: white;
+}
+
+.blockButtonsFilter {
+    margin-bottom: 15px;
+}
+
+.li {
+    list-style-type: none;
+    font-family: Alkatra;
+    color: #378430;
+    font-size: 17px;
+}
+
+.Cursor {
+    cursor: pointer;
+}
+
+.error {
+    border: red 2px solid;
+}
+
+.errorMessage {
+    color: #b50202;
+    font-family: "Righteous";
+    font-size: 16px;
+}
+
+.activeFilter {
+    background-color: aquamarine;
+}
+
+.isDone {
+    opacity: 0.5;
+}
+
+.errorField {
+    height: 21px;
+}
+

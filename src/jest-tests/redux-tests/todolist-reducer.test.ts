@@ -4,10 +4,10 @@ import {
     changeTodolistTitleAC,
     removeTodolistAC, setTodolistsAC, TodolistDomainType,
     todolistsReducer
-} from "./todolsits-reducer";
-import {FilterTodolistType} from "../AppWithRedux";
+} from "../../state/todolsits-reducer";
+import {FilterTodolistType} from "../../components/AppWithRedux";
 import {v1} from "uuid";
-import {TodolistType} from "../api/todolist-api";
+import {TodolistType} from "../../api/todolist-api";
 
 let todolistID1: string
 let todolistID2: string

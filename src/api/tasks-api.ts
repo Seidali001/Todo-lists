@@ -1,3 +1,4 @@
+import {TasksType, UpdateTaskModelType} from "./todolist-api";
 import axios from "axios";
 
 const instance = axios.create({
@@ -9,32 +10,37 @@ const instance = axios.create({
     }
 })
 
-export const taskApi = {
-    updateTodolist(todoID: string, title: string) {
-        return instance.put<ResponseType>(`todo-lists/${todoID}`, {title})
+// api
+export const tasksApi = {
+    updateTask(todolistId: string, taskId: string, model: UpdateTaskModelType) {
+        return instance.put<ResponseType>(`todo-lists/${todolistId}/tasks/${taskId}`, model)
             .then((res) => res.data)
     },
-    getTodolists() {
-        return instance.get<TodolistType[]>("todo-lists")
+    getTasks(todolistId: string) {
+        return instance.get<TasksFromBack>(`todo-lists/${todolistId}/tasks`)
             .then((res) => res.data)
     },
-    createTodolist(title: string) {
-        return instance.post<ResponseType<{item: TodolistType}>>("todo-lists", {title})
+    createTask(todolistId: string, title: string) {
+        return instance.post<ResponseType<TaskFromBackType>>(`todo-lists/${todolistId}/tasks`, {title})
             .then((res) => res.data)
     },
-    deleteTodolist(todoID: string) {
-        return instance.delete<ResponseType>(`todo-lists/${todoID}`)
+    deleteTask(todoListId: string, taskId: string) {
+        return instance.delete<ResponseType>(`todo-lists/${todoListId}/tasks/${taskId}`)
             .then((res) => res.data)
     }
 }
 
-type TodolistType = {
-    id: string
-    addedDate: string
-    order: number
-    title: string
+// types
+type TasksFromBack = {
+    items: TasksType[]
+    totalCount: number,
+    error: null | string
 }
-
+type TaskFromBackType = {
+    item: TasksType
+    totalCount: number,
+    error: null | string
+}
 export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
