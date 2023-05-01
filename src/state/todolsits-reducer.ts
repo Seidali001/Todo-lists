@@ -1,4 +1,4 @@
-import {FilterTodolistType} from "../components/AppWithRedux";
+import {FilterTodolistType} from "../components/appWithRedux/AppWithRedux";
 import {v1} from "uuid";
 import {
     todolistApi,

@@ -1,5 +1,6 @@
-/*html {
-    background-image: url(desert.jpg);
+
+html {
+    background-image: url(body-fon4.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -7,7 +8,8 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}*/
+}
+
 
 /*body {
     background-color: #2f4e8a;

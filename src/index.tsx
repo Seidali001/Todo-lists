@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.css';
-import AppWithRedux from './components/AppWithRedux';
+import AppWithRedux from './components/appWithRedux/AppWithRedux';
 import * as serviceWorker from './serviceWorker';
 import {createRoot} from 'react-dom/client';
 import {store} from "./state/store";
 import {Provider} from "react-redux";
-import App from "./components/App";
+import App from "./components/app/App";
 
 const container = document.getElementById('root') as HTMLElement
 const root = createRoot(container);

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useState} from "react";
-import style from "../style-modules/Todolist.module.css";
+import style from "../../style-modules/Todolist.module.css";
 import {Button, TextField} from "@material-ui/core";
 
 type AddItemFormPropsType = {

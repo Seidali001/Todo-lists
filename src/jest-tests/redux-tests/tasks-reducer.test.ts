@@ -5,7 +5,7 @@ import {
     changeTaskStatusAC, changeTaskTitleAC
 } from "../../state/tasks-reducer";
 import {v1} from "uuid";
-import {TasksStateType} from "../../components/AppWithRedux";
+import {TasksStateType} from "../../components/appWithRedux/AppWithRedux";
 import {TaskPriorities, TaskStatuses, TasksType} from "../../api/todolist-api";
 
 

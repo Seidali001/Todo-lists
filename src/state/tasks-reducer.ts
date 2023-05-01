@@ -1,4 +1,4 @@
-import {TasksStateType} from "../components/AppWithRedux";
+import {TasksStateType} from "../components/appWithRedux/AppWithRedux";
 import {
     addNewTodolistAC,
     removeTodolistAC,

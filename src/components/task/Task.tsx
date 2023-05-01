@@ -1,11 +1,11 @@
 import React, {ChangeEvent, FC, useCallback} from 'react';
-import {EditableSpan} from "./EditableSpan";
-import style from "../style-modules/Todolist.module.css";
+import {EditableSpan} from "../editableSpan/EditableSpan";
+import style from "../../style-modules/Todolist.module.css";
 import ClearIcon from "@mui/icons-material/Clear";
 import {Checkbox} from "@material-ui/core";
 import {useDispatch} from "react-redux";
-import {TaskStatuses, TasksType} from "../api/todolist-api";
-import {TDispatch} from "../state/store";
+import {TaskStatuses, TasksType} from "../../api/todolist-api";
+import {TDispatch} from "../../state/store";
 
 export type TaskProps = {
     todoID: string

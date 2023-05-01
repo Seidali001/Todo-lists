@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {Task, TaskProps} from "../components/Task";
+import {Task, TaskProps} from "../components/task/Task";
 import {action} from '@storybook/addon-actions'
 import {ReduxStoreProviderDecorator} from "./decorators/ReduxStoreProviderDecorator";
 import React, {FC} from "react";

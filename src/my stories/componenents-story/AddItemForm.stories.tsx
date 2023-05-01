@@ -1,6 +1,6 @@
 import type { Meta} from '@storybook/react';
 
-import { AddItemForm } from '../../components/AddItemForm';
+import { AddItemForm } from '../../components/addItemForm/AddItemForm';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof AddItemForm> = {

@@ -4,7 +4,7 @@ import {tasksApi} from "../../api/tasks-api";
 import {TaskStatuses, UpdateTaskModelType} from "../../api/todolist-api";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
-import {TasksStateType} from "../../components/App";
+import {TasksStateType} from "../../components/app/App";
 import {updateTaskAC} from "../../state/tasks-reducer";
 import {string} from "prop-types";
 

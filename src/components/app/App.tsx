@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react'
-import '../App.css';
-import {Todolist} from './Todolist';
-import {AddItemForm} from './AddItemForm';
+import '../../App.css';
+import {Todolist} from '../todolist/Todolist';
+import {AddItemForm} from '../addItemForm/AddItemForm';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -17,17 +17,17 @@ import {
     changeTodolistTitleAC,
     removeTodolistAC,
     TodolistDomainType
-} from '../state/todolsits-reducer'
+} from '../../state/todolsits-reducer'
 import {
     addTaskAC,
     changeTaskTitleAC,
     removeTaskAC,
     changeTaskStatusAC
-} from '../state/tasks-reducer';
+} from '../../state/tasks-reducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppRootStateType} from '../state/store';
-import {TaskPriorities, TaskStatuses, TasksType} from '../api/todolist-api'
-import {FilterTodolistType} from "./AppWithRedux";
+import {AppRootStateType} from '../../state/store';
+import {TaskPriorities, TaskStatuses, TasksType} from '../../api/todolist-api'
+import {FilterTodolistType} from "../appWithRedux/AppWithRedux";
 import {v1} from "uuid";
 
 export type TasksStateType = {
