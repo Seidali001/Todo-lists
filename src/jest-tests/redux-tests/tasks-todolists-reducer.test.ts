@@ -1,6 +1,6 @@
-import {addNewTodolistAC, removeTodolistAC, TodolistDomainType, todolistsReducer} from "../../state/todolsits-reducer";
-import {TasksStateType} from "../../components/appWithRedux/AppWithRedux";
-import {addTaskAC, tasksReducer} from "../../state/tasks-reducer";
+import {addNewTodolistAC, removeTodolistAC, TodolistDomainType, todolistsReducer} from "../../../src/features/todolistsList//todolsits-reducer";
+import {TasksStateType} from "../../../src/components/app/appWithRedux/AppWithRedux";
+import {addTaskAC, tasksReducer} from "../../../src/features/todolistsList/tasks-reducer";
 import {v1} from "uuid";
 import {TaskPriorities, TaskStatuses, TodolistType} from "../../api/todolist-api";
 

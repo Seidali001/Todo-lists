@@ -1,23 +1,9 @@
-import React, {useCallback, useEffect} from 'react';
-import '../../App.css';
-import {Todolist} from "../todolist/Todolist";
-import {AddItemForm} from "../addItemForm/AddItemForm";
+import React from 'react';
+import '../../../App.css';
 import {AppBar, Box, Button, Container, Grid, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@mui/icons-material";
-import {
-    addTodolistTC,
-    changeTodolistFilterAC,
-    changeTodolistTitleTC, fetchTodolistsTC, removeTodolistTC, TodolistDomainType,
-
-} from "../../state/todolsits-reducer";
-import {
-    addTasksTC,
-    removeTasksTC, updateTaskTC
-} from "../../state/tasks-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType, TDispatch,} from "../../state/store";
-import {TaskStatuses, TasksType} from "../../api/todolist-api";
-import {TodolistsList} from "../todolistsList/TodolistsList";
+import {TasksType} from "../../../api/todolist-api";
+import {TodolistsList} from "../../../features/todolistsList/TodolistsList";
 
 export type FilterTodolistType = "all" | "active" | "completed";
 

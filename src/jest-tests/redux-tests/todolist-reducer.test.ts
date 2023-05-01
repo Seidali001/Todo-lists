@@ -4,8 +4,8 @@ import {
     changeTodolistTitleAC,
     removeTodolistAC, setTodolistsAC, TodolistDomainType,
     todolistsReducer
-} from "../../state/todolsits-reducer";
-import {FilterTodolistType} from "../../components/appWithRedux/AppWithRedux";
+} from "../../../src/features/todolistsList/todolsits-reducer";
+import {FilterTodolistType} from "../../components/app/appWithRedux/AppWithRedux";
 import {v1} from "uuid";
 import {TodolistType} from "../../api/todolist-api";
 

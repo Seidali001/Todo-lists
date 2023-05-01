@@ -1,13 +1,13 @@
-import {FilterTodolistType} from "../components/appWithRedux/AppWithRedux";
+import {FilterTodolistType} from "../../components/app/appWithRedux/AppWithRedux";
 import {v1} from "uuid";
 import {
     todolistApi,
     TodolistType
-} from "../api/todolist-api";
+} from "../../api/todolist-api";
 import {
     AppActionsType,
     RootThunkType
-} from "./store";
+} from "../../components/app/store";
 
 const initialState: Array<TodolistDomainType> = []
 

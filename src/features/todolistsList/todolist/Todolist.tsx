@@ -1,15 +1,15 @@
 import React, {FC, useCallback, useEffect, useState} from 'react';
-import style from '../../style-modules/Todolist.module.css'
-import {FilterTodolistType} from "../appWithRedux/AppWithRedux";
-import {AddItemForm} from "../addItemForm/AddItemForm";
-import {EditableSpan} from "../editableSpan/EditableSpan";
+import style from '../../../style-modules/Todolist.module.css'
+import {FilterTodolistType} from "../../../components/app/appWithRedux/AppWithRedux";
+import {AddItemForm} from "../../../components/addItemForm/AddItemForm";
+import {EditableSpan} from "../../../components/editableSpan/EditableSpan";
 import ClearIcon from '@mui/icons-material/Clear';
 import {Button, ButtonGroup} from "@material-ui/core";
-import {Task} from "../task/Task";
-import {TaskStatuses, TasksType} from "../../api/todolist-api";
-import {FilterValuesType} from "../../state/todolsits-reducer";
-import {TDispatch} from "../../state/store";
-import {fetchTasksTC} from "../../state/tasks-reducer";
+import {Task} from "../../../features/todolistsList/todolist/task/Task";
+import {TaskStatuses, TasksType} from "../../../api/todolist-api";
+import {FilterValuesType} from "../../../features/todolistsList/todolsits-reducer";
+import {TDispatch} from "../../../components/app/store";
+import {fetchTasksTC} from "../../../features/todolistsList/tasks-reducer";
 import {useDispatch} from "react-redux";
 
 export type TodolistPropsType = {

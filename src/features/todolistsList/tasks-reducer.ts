@@ -1,4 +1,4 @@
-import {TasksStateType} from "../components/appWithRedux/AppWithRedux";
+import {TasksStateType} from "../../components/app/appWithRedux/AppWithRedux";
 import {
     addNewTodolistAC,
     removeTodolistAC,
@@ -9,14 +9,14 @@ import {
     TaskStatuses,
     TasksType,
     UpdateTaskModelType
-} from "../api/todolist-api";
+} from "../../api/todolist-api";
 import {
     AppActionsType,
     AppRootStateType,
     RootThunkType
-} from "./store";
+} from "../../components/app/store";
 import {Dispatch} from "redux";
-import {tasksApi} from "../api/tasks-api";
+import {tasksApi} from "../../api/tasks-api";
 
 const initialState: TasksStateType = {}
 
