@@ -6,9 +6,9 @@ import {
     setAppStastusAC,
     /*setAppStatusAC,
     SetAppStatusActionType*/
-} from '../components/app/app-reducer'
-import {authAPI, LoginParamsType} from "../api/todolist-api";
-import {TDispatch} from "../components/app/store";
+} from '../../components/app/app-reducer'
+import {authAPI, LoginParamsType} from "../../api/todolist-api";
+import {TDispatch} from "../../components/app/store";
 
 const initialState = {
     isLoggedIn: false
@@ -29,13 +29,35 @@ export const setIsLoggedInAC = (value: boolean) =>
 
 // thunks
 
-
 export const loginTC = (data: LoginParamsType): any => async (dispatch: TDispatch) => {
     dispatch(setAppStastusAC("loading"))
     try {
         const res = await authAPI.login(data)
         if (res.data.resultCode === 0) {
-            alert('OK')
+            dispatch(setIsLoggedInAC(true))
+            dispatch(setAppStastusAC("succeeded"))
+            /*dispatch(addNewTodolistAC(res.data.data.userId))
+            dispatch(setAppStastusAC("succeeded"))*/
+        } else {
+            if (res.data.messages) {
+                dispatch(setAppErrorAC(res.data.messages[0]))
+            } else {
+                dispatch(setAppErrorAC('some error occurred'))
+            }
+            dispatch(setAppStastusAC('failed'))
+        }
+    } catch (e: any) {
+        dispatch(setAppErrorAC(e.message))
+        dispatch(setAppStastusAC("failed"))
+    }
+}
+
+export const logoutTC = (): any => async (dispatch: TDispatch) => {
+    dispatch(setAppStastusAC("loading"))
+    try {
+        const res = await authAPI.logout()
+        if (res.data.resultCode === 0) {
+            dispatch(setIsLoggedInAC(false))
             dispatch(setAppStastusAC("succeeded"))
             /*dispatch(addNewTodolistAC(res.data.data.userId))
             dispatch(setAppStastusAC("succeeded"))*/

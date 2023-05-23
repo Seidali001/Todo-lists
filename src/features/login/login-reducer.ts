@@ -4,10 +4,15 @@ import {authAPI, LoginParamsType, TasksType, todolistApi} from "../../api/todoli
 import {setAppErrorAC, setAppStastusAC} from "../../components/app/app-reducer";
 import {addNewTodolistAC, setTodolistsAC} from "../todolistsList/todolsits-reducer";
 
-const initialState: any = {}
+const initialState: any = {
+    isLoggedIn: false
+}
+export type initialStateType = {
+    isLoggedIn: boolean
+}
 
 export type TasksActionsType = any
-export const loginReducer = (state = initialState, action: TasksActionsType ) => {
+export const loginReducer = (state: initialStateType = initialState, action: TasksActionsType ) => {
     switch (action.type) {
 
         default:
@@ -15,7 +20,7 @@ export const loginReducer = (state = initialState, action: TasksActionsType ) =>
     }
 }
 
-export const loginTC = (data: LoginParamsType): any => async (dispatch: TDispatch) => {
+export const loginTC2 = (data: LoginParamsType): any => async (dispatch: TDispatch) => {
     dispatch(setAppStastusAC("loading"))
     try {
         const res = await authAPI.login(data)

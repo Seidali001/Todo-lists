@@ -13,7 +13,8 @@ beforeEach(() => {
 
     startValueState = {
         status: "idle" as RequestStatusType,
-        error: "" as RequestErrorType
+        error: "" as RequestErrorType,
+        isInitialized: false
     }
 })
 

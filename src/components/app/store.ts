@@ -4,6 +4,7 @@ import {appReducer} from '../app/app-reducer'
 import {applyMiddleware, combineReducers, createStore, Dispatch, AnyAction} from 'redux'
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
+import {authReducer} from "../../features/login/auth-reducer";
 
 
 // объединяя reducer-ы с помощью combineReducers,
@@ -11,7 +12,8 @@ import {useDispatch} from "react-redux";
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
-    app: appReducer
+    app: appReducer,
+    auth: authReducer
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunk))
