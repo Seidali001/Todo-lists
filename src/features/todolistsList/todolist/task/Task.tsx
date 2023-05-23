@@ -2,10 +2,12 @@ import React, {ChangeEvent, FC, useCallback} from 'react';
 import {EditableSpan} from "../../../../components/editableSpan/EditableSpan";
 import style from "../../../../style-modules/Todolist.module.css";
 import ClearIcon from "@mui/icons-material/Clear";
-import {Checkbox} from "@material-ui/core";
+import {Checkbox} from '@mui/material';
+import {IconButton } from '@mui/material';
 import {useDispatch} from "react-redux";
 import {TaskStatuses, TasksType} from "../../../../api/todolist-api";
 import {TDispatch} from "../../../../components/app/store";
+
 
 export type TaskProps = {
     todoID: string
@@ -37,7 +39,7 @@ export const Task: FC<TaskProps> = ({
     const removeOnClickCallback = useCallback(() => {
         removeOnClickHandler(task.id)
     }, [dispatch, todoID, task.id])
-
+console.log(!!task.status)
     return (
         <div>
             <li
@@ -49,14 +51,14 @@ export const Task: FC<TaskProps> = ({
                           color="secondary"
                           onChange={onchangeCheckboxCallback}
                           checked={!!task.status}
-                />
-                <EditableSpan
-                    id={task.id}
-                    title={task.title}
-                    onChange={onChangeTitleCallback}
-                />
-                <span className={style.Cursor} onClick={removeOnClickCallback}><ClearIcon
-                    fontSize="small" color="error"/></span>
+                /> <EditableSpan
+                id={task.id}
+                status={task.status}
+                title={task.title}
+                onChange={onChangeTitleCallback}
+            />
+                <IconButton sx={{width: 25, height: 25, bottom: 13}} className={style.Cursor} onClick={removeOnClickCallback}><ClearIcon
+                    fontSize="small" color="error"/></IconButton>
             </li>
         </div>
     );

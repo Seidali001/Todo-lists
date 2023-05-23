@@ -1,4 +1,5 @@
 import axios from "axios";
+import {RequestStatusType} from "../components/app/app-reducer";
 
 export const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.1/",
@@ -22,13 +23,18 @@ export const todolistApi = {
     createTodolist(title: string) {
         return instance.post<ResponseType<{ item: TodolistFromBackType }>>("todo-lists", {title})
             .then((res) => {
-                console.log('api create response ', res)
                 return res
             })
     },
     deleteTodolist(todolistId: string) {
         return instance.delete<ResponseType>(`todo-lists/${todolistId}`)
             .then((res) => res.data)
+    }
+}
+
+export const authAPI = {
+    login(data: LoginParamsType) {
+        return instance.post<OperationResult<{ userId?: number }>>("auth/login", data)
     }
 }
 
@@ -56,8 +62,15 @@ export type TasksType = {
     todoListId: string
     order: number
     addedDate: string
+    entityStatus: RequestStatusType
 }
 export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: Array<string>
+    fieldsErrors: Array<string>
+    data: D
+}
+export type OperationResult<D = {}> = {
     resultCode: number
     messages: Array<string>
     fieldsErrors: Array<string>
@@ -71,6 +84,12 @@ export type UpdateTaskModelType = {
     deadline: string,
     status: TaskStatuses
 }
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
 
 // enums
 export enum TaskStatuses {
@@ -79,6 +98,7 @@ export enum TaskStatuses {
     Completed = 2,
     Draft = 3
 }
+
 export enum TaskPriorities {
     Low = 0,
     Middle = 1,

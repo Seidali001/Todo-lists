@@ -1,17 +1,21 @@
 import React, {ChangeEvent, FC, KeyboardEvent, useState} from "react";
 import style from "../../style-modules/Todolist.module.css";
 import {TextField} from "@material-ui/core";
+import { log } from "console";
 
 type EditableSpanPropsType = {
     title: string
     onChange: (newTitle: string, id?: string | undefined) => void
-    id?: string
+    id?: string,
+    status?:number
 }
+
 
 export const EditableSpan: FC<EditableSpanPropsType> = ({
                                                             title,
                                                             onChange,
-                                                            id
+                                                            id,
+                                                            status
                                                         }) => {
 
     // useState
@@ -23,9 +27,16 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({
         setNewTitle(event.currentTarget.value)
     }
 
+
+    const unactivateEditMode = () => {
+        setEditMode(false)
+    }
+
     const activateEditMode = () => {
+      if(!status){
         setNewTitle(title)
         setEditMode(true)
+      }
     }
 
     const activateViewMode = () => {
@@ -41,11 +52,11 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({
             return;
         }
 
-        if (newTitle.length >= 15) {
+        /*if (newTitle.length >= 15) {
             setNewTitle(newTitle)
             setError("Title is long!")
             return
-        }
+        }*/
 
         if (newTitle.length === 1) {
             setNewTitle(newTitle)
@@ -69,7 +80,7 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({
     }
 
     return (
-        !editMode ? <span className={style.Cursor} onDoubleClick={activateEditMode}>{title}</span>
+        !editMode ? <span className={style.Cursor} onDoubleClick={activateEditMode}>{title} </span>
             :
             <>
                 <>

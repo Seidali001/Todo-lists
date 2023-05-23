@@ -4,7 +4,7 @@ import {tasksApi} from "../../api/tasks-api";
 import {TaskStatuses, UpdateTaskModelType} from "../../api/todolist-api";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "../../components/app/store";
-import {TasksStateType} from "../../components/app/App";
+import {TasksStateType} from "../../components/app/appWithRedux/AppWithRedux";
 import {updateTaskAC} from "../../features/todolistsList/tasks-reducer";
 import {string} from "prop-types";
 
@@ -15,7 +15,7 @@ export default {
 export const GetTasks = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const todolistId = "475ed67b-9317-48c2-9572-a2797774dce5"
+        const todolistId = "a64c20c6-cfc4-4635-97f9-38cd2bfc50e0"
         tasksApi.getTasks(todolistId)
             .then((res) => {
                 setState(res)

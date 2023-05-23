@@ -1,5 +1,6 @@
 import {TasksActionsType, tasksReducer} from '../../features/todolistsList/tasks-reducer'
 import {TodolistsActionsType, todolistsReducer} from '../../features/todolistsList/todolsits-reducer'
+import {appReducer} from '../app/app-reducer'
 import {applyMiddleware, combineReducers, createStore, Dispatch, AnyAction} from 'redux'
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
@@ -9,7 +10,8 @@ import {useDispatch} from "react-redux";
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
     tasks: tasksReducer,
-    todolists: todolistsReducer
+    todolists: todolistsReducer,
+    app: appReducer
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunk))

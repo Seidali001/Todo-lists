@@ -30,22 +30,22 @@ beforeEach(() => {
     startValueTesting = {
         [todolistId1]: [
             {id: v1(), title: "html & css", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" },
             {id: v1(), title: "js", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" },
             {id: v1(), title: "react", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 }
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" }
         ],
 
         [todolistId2]: [
             {id: v1(), title: "redux", status: 1, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" },
             {id: v1(), title: "mobx", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" },
             {id: v1(), title: "js", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" },
             {id: v1(), title: "ts", status: 0, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0 }
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: 0, entityStatus: "idle" }
         ]
     }
 
@@ -82,7 +82,8 @@ test("test should add task", () => {
         deadline: '',
         addedDate: '',
         order: 0,
-        priority: TaskPriorities.Low
+        priority: TaskPriorities.Low,
+        entityStatus: "idle"
     }
 
     const endStateValue = tasksReducer(startValueTesting, addTaskAC(newTask))

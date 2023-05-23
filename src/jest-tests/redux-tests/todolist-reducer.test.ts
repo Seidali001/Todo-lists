@@ -1,6 +1,7 @@
 import {
     addNewTodolistAC,
     changeTodolistFilterAC,
+    changeTodolistStatusAC,
     changeTodolistTitleAC,
     removeTodolistAC, setTodolistsAC, TodolistDomainType,
     todolistsReducer
@@ -8,6 +9,7 @@ import {
 import {FilterTodolistType} from "../../components/app/appWithRedux/AppWithRedux";
 import {v1} from "uuid";
 import {TodolistType} from "../../api/todolist-api";
+import { RequestStatusType } from "../../components/app/app-reducer";
 
 let todolistID1: string
 let todolistID2: string
@@ -21,6 +23,7 @@ let newTodolist: TodolistDomainType
 let newTodolistTitle: string
 let newFilterValueActive: FilterTodolistType
 let newFilterValueCompleted: FilterTodolistType
+let newStatusValueCompleted: RequestStatusType
 
 let startValueStateWithFilter: TodolistDomainType[]
 let startValueStateForTask: Array<TodolistType>
@@ -40,16 +43,18 @@ beforeEach(() => {
     newFilterValueActive = "active"
     newFilterValueCompleted = "completed"
 
-    newTodolist = {id: todolistID6, title: "What to buy", addedDate: "", order: 0, filter: "all"}
+    newStatusValueCompleted = "succeeded"
+
+    newTodolist = {id: todolistID6, title: "What to buy", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'}
 
     startValueStateWithFilter = [
-        {id: todolistID1, title: "What to buy", addedDate: "", order: 2, filter: 'all'},
-        {id: todolistID2, title: "What to read", addedDate: "", order: 2, filter: 'all'}
+        {id: todolistID1, title: "What to buy", addedDate: "", order: 2, filter: 'all', entityStatus: 'idle'},
+        {id: todolistID2, title: "What to read", addedDate: "", order: 2, filter: 'all', entityStatus: 'idle'}
     ]
 
     startStateWithFilter = [
-        {id: todolistID4, title: "What to do", addedDate: "", order: 0, filter: "all"},
-        {id: todolistID5, title: "What to need", addedDate: "", order: 0, filter: "all"}
+        {id: todolistID4, title: "What to do", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'},
+        {id: todolistID5, title: "What to need", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'}
     ]
 })
 
@@ -96,6 +101,17 @@ test("test should change todolist filter immutability", () => {
     expect(startValueStateWithFilter[1].filter).toBe("all")
 
 })
+
+test("test should change todolist status immutability", () => {
+
+    let endStateValue = todolistsReducer(startValueStateWithFilter, changeTodolistStatusAC(todolistID2, newStatusValueCompleted))
+
+    expect(endStateValue[0].entityStatus).toBe("idle")
+    expect(endStateValue[1].entityStatus).toBe("succeeded")
+    
+
+})
+
 
 test("test should add new todolist", () => {
 

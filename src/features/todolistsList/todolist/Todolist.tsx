@@ -4,20 +4,23 @@ import {FilterTodolistType} from "../../../components/app/appWithRedux/AppWithRe
 import {AddItemForm} from "../../../components/addItemForm/AddItemForm";
 import {EditableSpan} from "../../../components/editableSpan/EditableSpan";
 import ClearIcon from '@mui/icons-material/Clear';
-import {Button, ButtonGroup} from "@material-ui/core";
-import {Task} from "../../../features/todolistsList/todolist/task/Task";
+import {ButtonGroup, IconButton, Button} from "@mui/material";
+import {Task} from "./task/Task";
 import {TaskStatuses, TasksType} from "../../../api/todolist-api";
 import {FilterValuesType} from "../../../features/todolistsList/todolsits-reducer";
 import {TDispatch} from "../../../components/app/store";
-import {fetchTasksTC} from "../../../features/todolistsList/tasks-reducer";
-import {useDispatch} from "react-redux";
+import {fetchTasksTC} from "../tasks-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RequestStatusType} from "../../../components/app/app-reducer"
+import {LoadingButton} from '@mui/lab';
+import {TodolistDomainType} from '../../../features/todolistsList/todolsits-reducer'
+import { fileURLToPath } from 'url';
+import { Slide, fade } from '@material-ui/core';
 
 export type TodolistPropsType = {
-    id: string
-    title: string
+    todolist: TodolistDomainType
     tasks: Array<TasksType>
     removeTask: (taskId: string, todolistID: string) => void
-    filter: FilterValuesType
     changeFiltered: (todolistId: string, valueFilter: FilterTodolistType) => void
     addTask: (todolistID: string, titleTask: string) => void
     changeTaskStatus: (todolistID: string, taskID: string, status: TaskStatuses) => void
@@ -28,11 +31,9 @@ export type TodolistPropsType = {
 
 
 export const Todolist: FC<TodolistPropsType> = React.memo(({
-                                                               id,
-                                                               title,
+                                                               todolist,                                                      
                                                                tasks,
                                                                removeTask,
-                                                               filter,
                                                                changeFiltered,
                                                                addTask,
                                                                changeTaskStatus,
@@ -40,92 +41,96 @@ export const Todolist: FC<TodolistPropsType> = React.memo(({
                                                                changeTaskTitle,
                                                                changeTodolistTitle
                                                            }) => {
-    const [disable, setDisable] = useState(false)
     const dispatch: TDispatch = useDispatch();
 
+
     useEffect(() => {
-        dispatch(fetchTasksTC(id))
-    }, [id])
+        dispatch(fetchTasksTC(todolist.id))
+    }, [todolist.id])
 
     const onAllFilterClickHandler = useCallback(() => {
-        changeFiltered(id, "all")
-    }, [changeFiltered, id])
+        changeFiltered(todolist.id, "all")
+    }, [changeFiltered, todolist.id])
 
     const onActiveFilterClickHandler = useCallback(() => {
-        changeFiltered(id, "active")
-    }, [changeFiltered, id])
+        changeFiltered(todolist.id, "active")
+    }, [changeFiltered, todolist.id])
 
     const onCompleteFilterClickHandler = useCallback(() => {
-        changeFiltered(id, "completed")
-    }, [changeFiltered, id])
+        changeFiltered(todolist.id, "completed")
+    }, [changeFiltered, todolist.id])
 
     function removeTodolistHandler() {
-        removeTodolist(id)
+        removeTodolist(todolist.id)
     }
 
-    const addTaskHandler = useCallback((id: string, title: string) => {
+    const addTaskHandler = useCallback((title: string, id: string) => {
         addTask(id, title)
-    }, [addTask, id])
+    }, [addTask, todolist.id])
 
     function onChangeTodolistTitleHandler(todolistTitle: string) {
-        changeTodolistTitle(id, todolistTitle)
+        changeTodolistTitle(todolist.id, todolistTitle)
     }
 
     let tasksForTodolist = tasks
 
-    if (filter === "active") {
+    if (todolist.filter === "active") {
         tasksForTodolist = tasks.filter(el => el.status === TaskStatuses.New)
-        debugger
     }
-    if (filter === "completed") {
-        debugger
+    if (todolist.filter === "completed") {
         tasksForTodolist = tasks.filter(el => el.status === TaskStatuses.InProgress)
     }
 
     const checkboxOnchangeHandler = useCallback((taskID: string, status: TaskStatuses) => {
-        changeTaskStatus(id, taskID, status)
+        changeTaskStatus(todolist.id, taskID, status)
 
-    }, [id, changeTaskStatus])
+    }, [todolist.id, changeTaskStatus])
 
     const onChangeTitleHandler = useCallback((taskID: string, taskValue: string) => {
-        changeTaskTitle(id, taskID, taskValue)
-    }, [id, changeTaskTitle])
+        changeTaskTitle(todolist.id, taskID, taskValue)
+    }, [todolist.id, changeTaskTitle])
 
     const removeOnClickHandler = useCallback((taskId: string) => {
-        removeTask(id, taskId)
-    }, [id, removeTask])
+        removeTask(todolist.id, taskId)
+    }, [todolist.id, removeTask])
+    
+    
 
     return (
         <div className={style.Todolist}>
             <h3 className={`${style.h3} ${style.Cursor}`}>
-                <EditableSpan title={title}
+                <EditableSpan title={todolist.title}
                               onChange={onChangeTodolistTitleHandler}/>
-                <span className={style.Cursor}
-                      onClick={removeTodolistHandler}>
-                       <ClearIcon fontSize="small"
-                                  color="error"/>
-                        </span>
+                            <IconButton sx={{width: 25, height: 25, bottom: 13}}
+                                        onClick={removeTodolistHandler}
+                                        
+                                        >
+                                 <ClearIcon className={style.Cursor}
+                                 fontSize="small"
+                                 color="error"/>
+                              </IconButton>
             </h3>
-            <AddItemForm id={id} addItem={addTaskHandler}
-            />
+            <AddItemForm id={todolist.id} addItem={addTaskHandler} entityStatus={todolist.entityStatus}
+            /> 
+              
             <div>
                 <ul className={style.ul}>
-                    {
-                        tasksForTodolist.map(t => <Task
+                    {  tasksForTodolist.map(t => <Task
                             key={t.id}
-                            todoID={id}
+                            todoID={t.id}
                             task={t}
                             removeOnClickHandler={removeOnClickHandler}
                             onChangeTitleHandler={onChangeTitleHandler}
                             checkboxOnchangeHandler={checkboxOnchangeHandler}/>
                         )
                     }
+                   
                 </ul>
                 <div className={style.blockButtonsFilter}>
                     <ButtonGroup
                         variant="text" aria-label="text button group">
                         <Button onClick={onAllFilterClickHandler}>all</Button>
-                        <Button color={'primary'}
+                        <Button sx={{color: "green"}}
                                 onClick={onActiveFilterClickHandler}>active</Button>
                         <Button color={'secondary'}
                                 onClick={onCompleteFilterClickHandler}>completed</Button>

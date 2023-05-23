@@ -1,15 +1,19 @@
 import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useState} from "react";
 import style from "../../style-modules/Todolist.module.css";
 import {Button, TextField} from "@material-ui/core";
+import {RequestStatusType} from "../../components/app/app-reducer"
+import {LoadingButton} from '@mui/lab';
 
 type AddItemFormPropsType = {
     style?: any
     id?: string
-    addItem: (id: string, titleTask: string) => void
+    addItem: (titleTask: string, id: string) => void
+    entityStatus?: RequestStatusType
 }
 export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
                                                                 id,
-                                                                addItem
+                                                                addItem,
+                                                                entityStatus
                                                             }) => {
 
     let [itemTitle, setItemTitle] = useState<string>("")
@@ -29,11 +33,11 @@ export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
             return setError("Don't use symbols!")
         }
 
-        if (itemTitle.length >= 15) {
+        /*if (itemTitle.length >= 15) {
             itemTitle = ""
             setItemTitle("")
             return setError("Title is long!")
-        }
+        }*/
 
         if (itemTitle.length === 1) {
             itemTitle = ""
@@ -42,7 +46,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
         }
 
         if (taskTitleTrimmed !== "") {
-            addItem(id ?? '', taskTitleTrimmed)
+            addItem(taskTitleTrimmed, id ?? '')
         } else {
             setError("Title is required!")
         }
@@ -64,6 +68,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
         }
     }
 
+
     return <div className={style.inputBlock}>
         <TextField id="standard-basic"
                    placeholder=" title value is..."
@@ -75,7 +80,7 @@ export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
                    onBlur={onBlurHandler}
         />
         <Button variant="contained" color="primary" className={style.AddTodo} disabled={itemTitle === ""}
-                onClick={addItemHandler}> add
+                onClick={addItemHandler}> {entityStatus === "loading" ? <LoadingButton loading/> : "ADD"}
         </Button>
         {error ? <div className={style.errorMessage}>{error}</div> : <div className={style.errorField}></div>}
     </div>

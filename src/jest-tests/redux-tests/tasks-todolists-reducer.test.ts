@@ -32,7 +32,7 @@ beforeEach(() => {
     newTodolistTitle = "What to learn"
     newFilterValue = "active"
 
-    newTodolist = {id: todolistID6, title: "What to buy", addedDate: "", order: 0, filter: "all"}
+    newTodolist = {id: todolistID6, title: "What to buy", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'}
 
 
 
@@ -42,26 +42,26 @@ beforeEach(() => {
     ]
 
     startStateWithFilter = [
-        {id: todolistID4, title: "What to do", addedDate: "", order: 0, filter: "all"},
-        {id: todolistID5, title: "What to need", addedDate: "", order: 0, filter: "all"}
+        {id: todolistID4, title: "What to do", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'},
+        {id: todolistID5, title: "What to need", addedDate: "", order: 0, filter: "all", entityStatus: 'idle'}
     ]
 
     startState = {
         'todolistId1': [
             {id: '1', title: 'CSS', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" },
             {id: '2', title: 'JS', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" },
             {id: '3', title: 'React', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low }
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" }
         ],
         'todolistId2': [
             {id: '1', title: 'bread', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" },
             {id: '2', title: 'milk', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low },
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" },
             {id: '3', title: 'tea', status: TaskStatuses.New, todoListId: "todolistId1", description: '',
-                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low }
+                startDate: '', deadline: '', addedDate: '', order: 0, priority: TaskPriorities.Low, entityStatus: "idle" }
         ]
     }
     newTitle = 'TS'
