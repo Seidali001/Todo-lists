@@ -13,6 +13,7 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import {Login} from "../../../features/login/Login";
 import {BrowserRouter} from 'react-router-dom';
 import {logoutTC} from "../../../features/login/auth-reducer";
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
 export type FilterTodolistType = "all" | "active" | "completed";
 
@@ -54,7 +55,7 @@ export function AppWithRedux() {
                             </Button>
                             <Typography variant="h6" component="div">
                             </Typography>
-                            {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Logout</Button>}
+                            {isLoggedIn && <Button color="inherit" onClick={logoutHandler}><DirectionsRunIcon/>Logout</Button>}
                         </Toolbar>
                         {status === 'loading' && <LinearProgress sx={{backgroundColor: "red"}}/>}
                     </AppBar>
