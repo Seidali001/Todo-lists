@@ -1,7 +1,7 @@
 import {FilterTodolistType} from "../components/app/appWithRedux/AppWithRedux";
 import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useCallback, useState} from "react";
 import style from "../style-modules/Todolist.module.css";
-import {Button, TextField} from "@material-ui/core";
+import {Button, TextField} from "@mui/material";
 
 type AddItemFormType = {
     style?: any
