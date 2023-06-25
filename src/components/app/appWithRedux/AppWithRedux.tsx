@@ -13,6 +13,7 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import {Login} from "../../../features/login/Login";
 import {BrowserRouter} from 'react-router-dom';
 import {logoutTC} from "../../../features/login/auth-reducer";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export type FilterTodolistType = "all" | "active" | "completed";
 
@@ -46,7 +47,7 @@ export function AppWithRedux() {
                 <Box sx={{flexGrow: 1}}>
                     <ErrorSnackbar/>
                     <AppBar position="static">
-                        <Toolbar>
+                        <Toolbar style={{"display": "flex", "flexDirection": "row", "justifyContent": "space-between"}} >
                             <Button
                                 size="large"
                                 color="inherit">
@@ -54,7 +55,7 @@ export function AppWithRedux() {
                             </Button>
                             <Typography variant="h6" component="div">
                             </Typography>
-                            {isLoggedIn && <Button color="inherit" onClick={logoutHandler}>Logout</Button>}
+                            {isLoggedIn && <Button color="inherit" onClick={logoutHandler}><LogoutIcon/></Button>}
                         </Toolbar>
                         {status === 'loading' && <LinearProgress sx={{backgroundColor: "red"}}/>}
                     </AppBar>
