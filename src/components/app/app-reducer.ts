@@ -1,6 +1,6 @@
 import {TDispatch} from "./store";
 import {authAPI, todolistApi} from "../../api/todolist-api";
-import {addNewTodolistAC, setTodolistsAC} from "../../features/todolistsList/todolsits-reducer";
+//import {addNewTodolistAC, setTodolistsAC} from "../../features/todolistsList/todolsits-reducer";
 import {setIsLoggedInAC} from "../../features/login/auth-reducer";
 
 const initialState = {
