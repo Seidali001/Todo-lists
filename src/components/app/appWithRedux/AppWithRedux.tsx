@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import '../../../App.css';
-import {AppBar, Box, Button, Container, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Box, Button, Container, Toolbar, Typography} from '@mui/material';
 import {Menu} from "@mui/icons-material";
 import {CircularProgress, LinearProgress} from "@mui/material"
 import {TasksType} from "../../../api/todolist-api";

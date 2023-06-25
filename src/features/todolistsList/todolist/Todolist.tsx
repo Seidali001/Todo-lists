@@ -7,15 +7,13 @@ import ClearIcon from '@mui/icons-material/Clear';
 import {ButtonGroup, IconButton, Button} from "@mui/material";
 import {Task} from "./task/Task";
 import {TaskStatuses, TasksType} from "../../../api/todolist-api";
-import {FilterValuesType} from "../../../features/todolistsList/todolsits-reducer";
 import {TDispatch} from "../../../components/app/store";
 import {fetchTasksTC} from "../tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RequestStatusType} from "../../../components/app/app-reducer"
 import {LoadingButton} from '@mui/lab';
-import {TodolistDomainType} from '../../../features/todolistsList/todolsits-reducer'
-import { fileURLToPath } from 'url';
-import { Slide, fade } from '@material-ui/core';
+import {TodolistDomainType} from '../todolsits-reducer'
+
 
 export type TodolistPropsType = {
     todolist: TodolistDomainType

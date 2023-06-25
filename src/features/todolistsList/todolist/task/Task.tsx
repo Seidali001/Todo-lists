@@ -39,7 +39,7 @@ export const Task: FC<TaskProps> = ({
     const removeOnClickCallback = useCallback(() => {
         removeOnClickHandler(task.id)
     }, [dispatch, todoID, task.id])
-console.log(!!task.status)
+
     return (
         <div>
             <li

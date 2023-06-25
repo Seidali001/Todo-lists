@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react';
 import {Task} from "../../features/todolistsList/todolist/task/Task";
-import {Checkbox} from "@material-ui/core";
+import {Checkbox} from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {TaskStatuses, TasksType} from "../../api/todolist-api";
 import {tasksApi} from "../../api/tasks-api";

@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC, FocusEvent, KeyboardEvent, useState} from "react";
 import style from "../../style-modules/Todolist.module.css";
-import {Button, TextField} from "@material-ui/core";
-import {RequestStatusType} from "../../components/app/app-reducer"
+import {Button, TextField} from "@mui/material";
+import {RequestStatusType} from "../app/app-reducer"
 import {LoadingButton} from '@mui/lab';
 
 type AddItemFormPropsType = {
