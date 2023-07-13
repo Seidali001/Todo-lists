@@ -1,8 +1,8 @@
 import {Dispatch} from "redux";
 import {RootThunkType, TDispatch} from "../../components/app/store";
 import {authAPI, LoginParamsType, TasksType, todolistApi} from "../../api/todolist-api";
-import {setAppErrorAC, setAppStastusAC} from "../../components/app/app-reducer";
-import {addNewTodolistAC, setTodolistsAC} from "../todolistsList/todolsits-reducer";
+import {appActions} from "../../components/app/app-reducer";
+//import {addNewTodolistAC, setTodolistsAC} from "../todolistsList/todolsits-reducer";
 
 const initialState: any = {
     isLoggedIn: false
@@ -21,25 +21,25 @@ export const loginReducer = (state: initialStateType = initialState, action: Tas
 }
 
 export const loginTC2 = (data: LoginParamsType): any => async (dispatch: TDispatch) => {
-    dispatch(setAppStastusAC("loading"))
+    dispatch(appActions.setAppStastus({status: "loading"}))
     try {
         const res = await authAPI.login(data)
         if (res.data.resultCode === 0) {
             alert('OK')
-            dispatch(setAppStastusAC("succeeded"))
+            dispatch(appActions.setAppStastus({status: "succeeded"}))
             /*dispatch(addNewTodolistAC(res.data.data.userId))
             dispatch(setAppStastusAC("succeeded"))*/
         } else {
             if (res.data.messages) {
-                dispatch(setAppErrorAC(res.data.messages[0]))
+                dispatch(appActions.setAppError({error: res.data.messages[0]}))
             } else {
-                dispatch(setAppErrorAC('some error occurred'))
+                dispatch(appActions.setAppError({error: 'some error occurred'}))
             }
-            dispatch(setAppStastusAC('failed'))
+            dispatch(appActions.setAppStastus({status: 'failed'}))
         }
     } catch (e: any) {
-        dispatch(setAppErrorAC(e.message))
-        dispatch(setAppStastusAC("failed"))
+        dispatch(appActions.setAppError({error: e.message}))
+        dispatch(appActions.setAppStastus({status: "failed"}))
     }
 }
 

@@ -1,15 +1,50 @@
 import {TDispatch} from "./store";
 import {authAPI, todolistApi} from "../../api/todolist-api";
 //import {addNewTodolistAC, setTodolistsAC} from "../../features/todolistsList/todolsits-reducer";
-import {setIsLoggedInAC} from "../../features/login/auth-reducer";
+import {authActions} from "../../features/login/auth-reducer";
+import { createSlice, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { string } from "prop-types";
+//import {setIsLoggedIn} from "../../features/login/auth-reducer";
+
+export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
+export type RequestErrorType = null | string
 
 const initialState = {
+    error: null as string | null,
     status: 'idle' as RequestStatusType,
-    error: '' as RequestErrorType,
     isInitialized: false
 }
 
-export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
+export type AppInitialStateType = typeof initialState;
+
+const slice = createSlice({
+    name: "app",
+    initialState,
+    reducers: {
+        setAppError: (state, action: PayloadAction<{error: string | null}>) => {
+state.error = action.payload.error
+        },
+        setAppStastus: (state, action: PayloadAction<{status: RequestStatusType}>) => {
+            state.status = action.payload.status
+        },
+        setAppInitialized: (state, action: PayloadAction<{isInitialized: boolean}>) => {
+            state.isInitialized = action.payload.isInitialized
+        }
+    },
+})
+
+export const appReducer = slice.reducer
+export const appActions = slice.actions
+
+
+
+/* const initialState = {
+    status: 'idle' as RequestStatusType,
+    error: '' as RequestErrorType,
+    isInitialized: false
+} */
+
+/* export const appReducer = (state: InitialStateType = initialState, action: AppActionsType): InitialStateType => {
     switch (action.type) {
         case 'APP/SET-STATUS':
             return {...state, status: action.status}
@@ -20,42 +55,44 @@ export const appReducer = (state: InitialStateType = initialState, action: AppAc
         default:
             return state
     }
-}
+} */
 
 // actions
-export const setAppErrorAC = (error: RequestErrorType) => ({type: "APP/SET-ERROR" as const, error})
+/* export const setAppErrorAC = (error: RequestErrorType) => ({type: "APP/SET-ERROR" as const, error})
 export const setAppStastusAC = (status: RequestStatusType) => ({type: "APP/SET-STATUS" as const, status})
-export const setAppInitializedAC = (value: boolean) => ({type: "APP/SET-APP-IS-INITIALIZED" as const, value})
+export const setAppInitializedAC = (value: boolean) => ({type: "APP/SET-APP-IS-INITIALIZED" as const, value}) */
 
 export const initializeAppTC = () => async (dispatch: TDispatch) => {
     try {
         const res = await authAPI.me()
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedInAC(true))
-
+            //dispatch(setIsLoggedInAC(true))
+            dispatch(authActions.setIsLoggedIn({isLoggedIn: true}))
         } else {
             if (res.data.messages) {
-                dispatch(setAppErrorAC(res.data.messages[0]))
+                const data = res.data.messages
+                //dispatch(setAppErrorAC(res.data.messages[0]))
+                dispatch(appActions.setAppError({error: res.data.messages[0]}))
             } else {
-                dispatch(setAppErrorAC('some error occurred'))
+                //dispatch(setAppErrorAC('some error occurred'))
+                dispatch(appActions.setAppError({error: 'some error occurred'}))
             }
-            dispatch(setAppStastusAC('failed'))
+            dispatch(appActions.setAppStastus({status: 'failed'}))
         }
-        dispatch(setAppInitializedAC(true))
+        dispatch(appActions.setAppInitialized({isInitialized: true}))
     } catch (e: any) {
-        dispatch(setAppErrorAC(e.message))
-        dispatch(setAppStastusAC("succeeded"))
+        dispatch(appActions.setAppError({error: e.message}))
+        dispatch(appActions.setAppStastus({status: "succeeded"}))
     }
 
 }
 
 // types
-export type InitialStateType = typeof initialState
-export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-export type RequestErrorType = null | string
 
 
-export type AppActionsType =
+
+
+/* export type AppActionsType =
     | ReturnType<typeof setAppStastusAC>
     | ReturnType<typeof setAppErrorAC>
-    | ReturnType<typeof setAppInitializedAC>
+    | ReturnType<typeof setAppInitializedAC> */

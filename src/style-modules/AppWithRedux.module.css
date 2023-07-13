@@ -1,0 +1,20 @@
+.Error {
+    background-image: url(error.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 300px;
+    left: 250px;
+    right: 250px;
+    top: 100px;
+    bottom: auto;
+    width: 45%;
+    height: 100%;
+    margin-top: 25px;
+}

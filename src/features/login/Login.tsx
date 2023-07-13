@@ -39,7 +39,7 @@ export const Login = () => {
             if (!values.password) {
                 errors.password = 'Password is required'
             }
-            if (values.password.length < 3) {
+            if (values.password?.trim().length < 3) {
                 errors.password = 'password is short'
             } else if (!/^[A-Z0-9]+$/i.test(values.password)) {
                 errors.password = 'Invalid password address'

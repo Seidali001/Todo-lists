@@ -33,12 +33,6 @@ export const AddItemForm: FC<AddItemFormPropsType> = React.memo(({
             return setError("Don't use symbols!")
         }
 
-        /*if (itemTitle.length >= 15) {
-            itemTitle = ""
-            setItemTitle("")
-            return setError("Title is long!")
-        }*/
-
         if (itemTitle.length === 1) {
             itemTitle = ""
             setItemTitle("")

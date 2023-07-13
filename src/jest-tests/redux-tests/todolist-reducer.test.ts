@@ -1,9 +1,5 @@
 import {
-    addNewTodolistAC,
-    changeTodolistFilterAC,
-    changeTodolistStatusAC,
-    changeTodolistTitleAC,
-    removeTodolistAC, setTodolistsAC, TodolistDomainType,
+    todolistsActions, TodolistDomainType,
     todolistsReducer
 } from "../../../src/features/todolistsList/todolsits-reducer";
 import {FilterTodolistType} from "../../components/app/appWithRedux/AppWithRedux";
@@ -60,7 +56,7 @@ beforeEach(() => {
 
 test("test should remove one of todolist", () => {
 
-    let endStateValue = todolistsReducer(startValueStateWithFilter, removeTodolistAC(todolistID1))
+    let endStateValue = todolistsReducer(startValueStateWithFilter, todolistsActions.removeTodolist({todolistId: todolistID1}))
 
     expect(endStateValue.length).toEqual(1)
     expect(endStateValue[0].title).toBe("What to read")
@@ -70,7 +66,7 @@ test("test should remove one of todolist", () => {
 
 test("test should change todolist title", () => {
 
-    let endStateValue = todolistsReducer(startValueStateWithFilter, changeTodolistTitleAC(todolistID1, newTodolistTitle))
+    let endStateValue = todolistsReducer(startValueStateWithFilter, todolistsActions.changeTodolistTitle({todolistId: todolistID1, title: newTodolistTitle}))
 
     expect(endStateValue[0].title).toBe(newTodolistTitle)
     expect(endStateValue[1].title).toBe("What to read")
@@ -81,7 +77,7 @@ test("test should change todolist title immutability", () => {
 
     const copyStartValueState = [...startValueStateWithFilter]
 
-    let endStateValue = todolistsReducer(copyStartValueState, changeTodolistTitleAC(todolistID1, newTodolistTitle))
+    let endStateValue = todolistsReducer(copyStartValueState, todolistsActions.changeTodolistTitle({todolistId: todolistID1, title: newTodolistTitle}))
 
     expect(endStateValue[0].title).toBe("What to learn")
     expect(endStateValue[1].title).toBe("What to read")
@@ -93,7 +89,7 @@ test("test should change todolist title immutability", () => {
 
 test("test should change todolist filter immutability", () => {
 
-    let endStateValue = todolistsReducer(startValueStateWithFilter, changeTodolistFilterAC(todolistID1, newFilterValueCompleted))
+    let endStateValue = todolistsReducer(startValueStateWithFilter, todolistsActions.changeTodolistFilter({todolistId: todolistID1, newChangeFilter: newFilterValueCompleted}))
 
     expect(endStateValue[0].filter).toBe("completed")
     expect(endStateValue[1].filter).toBe("all")
@@ -104,7 +100,7 @@ test("test should change todolist filter immutability", () => {
 
 test("test should change todolist status immutability", () => {
 
-    let endStateValue = todolistsReducer(startValueStateWithFilter, changeTodolistStatusAC(todolistID2, newStatusValueCompleted))
+    let endStateValue = todolistsReducer(startValueStateWithFilter, todolistsActions.changeTodolistStatus({todolistId: todolistID2, entityStatus: newStatusValueCompleted}))
 
     expect(endStateValue[0].entityStatus).toBe("idle")
     expect(endStateValue[1].entityStatus).toBe("succeeded")
@@ -115,7 +111,7 @@ test("test should change todolist status immutability", () => {
 
 test("test should add new todolist", () => {
 
-    let endStateValue = todolistsReducer(startValueStateWithFilter, addNewTodolistAC(newTodolist))
+    let endStateValue = todolistsReducer(startValueStateWithFilter, todolistsActions.addNewTodolist({todolist: newTodolist}))
 
     expect(endStateValue.length).toBe(3)
 

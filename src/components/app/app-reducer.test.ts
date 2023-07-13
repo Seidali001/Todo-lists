@@ -1,26 +1,31 @@
 import {
     appReducer,
-    InitialStateType,
     RequestErrorType,
     RequestStatusType,
-    setAppErrorAC,
-    setAppStastusAC
+    appActions,
+    AppInitialStateType
+    /* setAppErrorAC,
+    setAppStastusAC */
 } from "./app-reducer";
 
-let startValueState: InitialStateType
+/* type InitialStateType = {
+    error: string | null;
+    status: RequestStatusType;
+    isInitialized: boolean;
+} */
+
+let startValueState: AppInitialStateType
 beforeEach(() => {
-
-
     startValueState = {
-        status: "idle" as RequestStatusType,
-        error: "" as RequestErrorType,
-        isInitialized: false
+    error: null as null | "" ,
+    status: "idle",
+    isInitialized: false
     }
 })
 
 test("test should change status value", () => {
 
-    let endStateStatusValue = appReducer(startValueState, setAppStastusAC('succeeded'))
+    let endStateStatusValue = appReducer(startValueState, appActions.setAppStastus({status: 'succeeded'}))
 
     expect(endStateStatusValue.status).toBe('succeeded')
 
@@ -28,7 +33,7 @@ test("test should change status value", () => {
 
 test("test should change error value", () => {
 
-    let endStateErrorValue = appReducer(startValueState, setAppErrorAC(null))
+    let endStateErrorValue = appReducer(startValueState, appActions.setAppError({error: null}))
 
     expect(endStateErrorValue.error).toBe(null)
 

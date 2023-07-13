@@ -1,6 +1,6 @@
-import {addNewTodolistAC, removeTodolistAC, TodolistDomainType, todolistsReducer} from "../../../src/features/todolistsList//todolsits-reducer";
+import {todolistsActions, TodolistDomainType, todolistsReducer} from "../../../src/features/todolistsList//todolsits-reducer";
 import {TasksStateType} from "../../../src/components/app/appWithRedux/AppWithRedux";
-import {addTaskAC, tasksReducer} from "../../../src/features/todolistsList/tasks-reducer";
+import {tasksActions, tasksReducer} from "../../../src/features/todolistsList/tasks-reducer";
 import {v1} from "uuid";
 import {TaskPriorities, TaskStatuses, TodolistType} from "../../api/todolist-api";
 
@@ -70,7 +70,7 @@ beforeEach(() => {
 
 test('new array should be added when new todolist is added', () => {
 
-    const action = addNewTodolistAC(newTodolist)
+    const action = todolistsActions.addNewTodolist({todolist: newTodolist})
 
     const endState = tasksReducer(startState, action)
 
@@ -89,7 +89,7 @@ test('new todolist should be added', () => {
     const startTasksState: TasksStateType = {}
     const startTodolistsState = []
 
-    const endTodolistsState = todolistsReducer(startStateWithFilter, addNewTodolistAC(newTodolist))
+    const endTodolistsState = todolistsReducer(startStateWithFilter, todolistsActions.addNewTodolist({todolist: newTodolist}))
 
     expect(endTodolistsState.length).toEqual(3)
     expect(startStateWithFilter[0].title).toBe("What to do")
@@ -98,7 +98,7 @@ test('new todolist should be added', () => {
 
 test('property with todolistId should be deleted', () => {
 
-    const action2 = removeTodolistAC('todolistId2')
+    const action2 = todolistsActions.removeTodolist({todolistId: 'todolistId2'})
 
     const endState2 = tasksReducer(startState, action2)
 

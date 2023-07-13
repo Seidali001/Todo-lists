@@ -13,7 +13,13 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import {Login} from "../../../features/login/Login";
 import {BrowserRouter} from 'react-router-dom';
 import {logoutTC} from "../../../features/login/auth-reducer";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
+//import {ErrorPage} from "../../../components/app/errorPage/ErrorPage"
+import CustomizedInputBase from 'features/search/search';
+import { ErrorPage } from '../errorPage/ErrorPage';
+import zIndex from '@mui/material/styles/zIndex';
+//import CustomizedInputBase from "../../../features/search/search"
+
 
 export type FilterTodolistType = "all" | "active" | "completed";
 
@@ -46,14 +52,16 @@ export function AppWithRedux() {
             <div>
                 <Box sx={{flexGrow: 1}}>
                     <ErrorSnackbar/>
-                    <AppBar position="static">
-                        <Toolbar style={{"display": "flex", "flexDirection": "row", "justifyContent": "space-between"}} >
+                    <AppBar position="static" style={{ position : "sticky",  top: 0, zIndex: 100}}>
+                        <Toolbar style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} >
                             <Button
                                 size="large"
                                 color="inherit">
                                 <Menu/>
                             </Button>
+                            
                             <Typography variant="h6" component="div">
+                            <CustomizedInputBase/>
                             </Typography>
                             {isLoggedIn && <Button color="inherit" onClick={logoutHandler}><LogoutIcon/></Button>}
                         </Toolbar>
@@ -63,7 +71,7 @@ export function AppWithRedux() {
                         <Routes>
                             <Route path="/" element={<TodolistsList/>}/>
                             <Route path="/login" element={<Login/>}/>
-                            <Route path='/404' element={<h1>404: PAGE NOT FOUND</h1>}/>
+                            <Route path='/404' element={<ErrorPage />}/>
                             <Route path='*' element={<Navigate to="/404"/>}/>
                         </Routes>
                     </Container>
@@ -74,4 +82,6 @@ export function AppWithRedux() {
 }
 
 export default AppWithRedux;
+
+
 

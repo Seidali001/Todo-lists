@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType, TDispatch} from "../../components/app/store";
 import {
     addTodolistTC,
-    changeTodolistFilterAC, changeTodolistTitleTC,
+    todolistsActions, changeTodolistTitleTC,
     fetchTodolistsTC,
     removeTodolistTC,
     TodolistDomainType
@@ -41,7 +41,7 @@ export const TodolistsList: React.FC = () => {
     }, [])
 
     const changeFilter = useCallback((todolistId: string, valueFilter: FilterTodolistType) => {
-        dispatch(changeTodolistFilterAC(todolistId, valueFilter))
+        dispatch(todolistsActions.changeTodolistFilter({todolistId: todolistId, newChangeFilter: valueFilter}))
     }, [])
 
     const changeTaskStatus = (todolistID: string, taskID: string, status: TaskStatuses) => {
@@ -65,10 +65,6 @@ export const TodolistsList: React.FC = () => {
         dispatch(addTodolistTC(title))
     }, [])
 
-    /*if (!isLoggedIn) {
-        return <Navigate to={"/login"} />
-    }
-*/
     if (!isLoggedIn) {
         return <Navigate to={"/login"}/>
     }
@@ -82,10 +78,11 @@ export const TodolistsList: React.FC = () => {
 />
     </Grid>
     <Grid container
-          spacing={1}>
+          spacing={1}
+          sx={{width: "1193px"}}>
         {todolists?.map(todolists => {
             let tasksForTodolist = tasks[todolists.id]
-            return <Grid item>
+            return <Grid item >
                 <Todolist
                     todolist={todolists}
                     key={todolists.id}

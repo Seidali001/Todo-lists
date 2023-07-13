@@ -1,2 +1,5 @@
 {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "explicit"
 }

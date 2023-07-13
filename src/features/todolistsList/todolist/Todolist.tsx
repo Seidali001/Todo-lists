@@ -40,9 +40,9 @@ export const Todolist: FC<TodolistPropsType> = React.memo(({
     const dispatch: TDispatch = useDispatch();
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(fetchTasksTC(todolist.id))
-    }, [todolist.id])
+    }, [todolist.id]) */
 
     const onAllFilterClickHandler = useCallback(() => {
         changeFiltered(todolist.id, "all")
@@ -98,8 +98,7 @@ export const Todolist: FC<TodolistPropsType> = React.memo(({
                 <EditableSpan title={todolist.title}
                               onChange={onChangeTodolistTitleHandler}/>
                             <IconButton sx={{width: 25, height: 25, bottom: 13}}
-                                        onClick={removeTodolistHandler}
-                                        
+                                        onClick={removeTodolistHandler}              
                                         >
                                  <ClearIcon className={style.Cursor}
                                  fontSize="small"

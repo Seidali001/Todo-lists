@@ -1,8 +1,5 @@
 import {
-    addTaskAC,
-    removeTaskAC,
-    tasksReducer,
-    changeTaskStatusAC, changeTaskTitleAC
+    tasksActions, tasksReducer
 } from "../../../src/../src/features/todolistsList/tasks-reducer";
 import {v1} from "uuid";
 import {TasksStateType} from "../../components/app/appWithRedux/AppWithRedux";
@@ -61,7 +58,7 @@ test("test should remove task", () => {
     }
     let idTask = oneOfTask.id;
 
-    const endStateValue = tasksReducer(startValueTesting, removeTaskAC(todolistId2, idTask))
+    const endStateValue = tasksReducer(startValueTesting, tasksActions.removeTask({todolistId: todolistId2, taskId: idTask}))
 
     expect(endStateValue[todolistId2].length).toBe(3)
     // expect(endStateValue.childrenCount).toBe(6)
@@ -86,7 +83,7 @@ test("test should add task", () => {
         entityStatus: "idle"
     }
 
-    const endStateValue = tasksReducer(startValueTesting, addTaskAC(newTask))
+    const endStateValue = tasksReducer(startValueTesting, tasksActions.addTask({task: newTask}))
 
     expect(endStateValue[todolistId1].length).toBe(4)
     expect(endStateValue[todolistId2].length).toBe(4)
@@ -100,8 +97,8 @@ test("test should change task status", () => {
     const secondOfTask = startValueTesting[todolistId2][0]
     //const statusChanged = firstOfTask.status
 
-    const endStateValueForFirstTodo = tasksReducer(startValueTesting,changeTaskStatusAC(todolistId1, firstOfTask.id, 1))
-    const endStateValueForSecondTodo = tasksReducer(startValueTesting,changeTaskStatusAC(todolistId2, secondOfTask.id, 0))
+    const endStateValueForFirstTodo = tasksReducer(startValueTesting,tasksActions.changeTaskStatus({todolistId: todolistId1, taskId: firstOfTask.id, status: 1}))
+    const endStateValueForSecondTodo = tasksReducer(startValueTesting,tasksActions.changeTaskStatus({todolistId: todolistId2, taskId: secondOfTask.id, status: 0}))
 
      expect(endStateValueForFirstTodo[todolistId1][0].status).toBe(1)
      expect(endStateValueForSecondTodo[todolistId2][0].status).toBe(0)
@@ -129,8 +126,8 @@ test("test should change task title", () => {
     const idFirstOfTaskFromSecondTodo = startValueTesting[todolistId2][0].id
 
 
-    const endStateValue1 = tasksReducer(startValueTesting,changeTaskTitleAC(todolistId1, idFirstOfTaskFromFirstTodo, newTitle1))
-    const endStateValue2 = tasksReducer(startValueTesting,changeTaskTitleAC(todolistId2, idFirstOfTaskFromSecondTodo, newTitle2))
+    const endStateValue1 = tasksReducer(startValueTesting,tasksActions.changeTaskTitle({todolistId: todolistId1, taskId: idFirstOfTaskFromFirstTodo, newTitle: newTitle1}))
+    const endStateValue2 = tasksReducer(startValueTesting,tasksActions.changeTaskTitle({todolistId: todolistId2, taskId: idFirstOfTaskFromSecondTodo, newTitle: newTitle2}))
 
     expect(endStateValue1[todolistId1][0].title).toBe("html5")
     expect(endStateValue2[todolistId2][0].title).toBe("redux-toolkit")
